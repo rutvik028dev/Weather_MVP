@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+/*
+  Design plan (per the frontend-design brief):
+
+  Subject: a national weather/disaster monitoring instrument, used by both
+  ordinary citizens checking local conditions and emergency responders
+  scanning the whole country at once. It should read like an operations
+  room instrument, not a consumer SaaS product -- legible under pressure,
+  calm by default, sharp about escalation.
+
+  Color -- a monsoon-night palette instead of the generic dark+neon or
+  cream+terracotta defaults:
+    --ink        #12172B  deep indigo-slate, the base surface (a storm sky, not pure black)
+    --panel      #1B2140  slightly lifted panel surface
+    --line       #323B5E  hairline borders/dividers
+    --mist       #8891B5  secondary text, muted UI
+    --paper      #EDEFF7  primary text on dark
+    --teal       #2FB8A6  verified / confirmed / "clear" data
+    --amber      #E8A33D  pending / medium severity / monsoon-warning
+    --coral      #E1614F  high/critical severity, used sparingly
+
+  Type -- Space Grotesk for headlines and big stat numbers (geometric,
+  technical, reads well at large sizes for a live counter); IBM Plex Sans
+  for UI and body text (a technical/governmental register, and its family
+  also covers Devanagari -- a deliberate nod to the platform's multilingual
+  reporting, not a generic Inter default).
+
+  Layout -- map-first control room: a slim live-stats strip up top, a
+  full-bleed map as the dominant element, a right-hand instrument panel
+  for filters and the event feed. Hairline dividers and small-caps labels
+  stand in for card borders/shadows -- no uniform rounded-card kit.
+*/
+
+:root {
+  --ink: #12172b;
+  --panel: #1b2140;
+  --panel-raised: #232a4e;
+  --line: #323b5e;
+  --mist: #8891b5;
+  --paper: #edeff7;
+  --teal: #2fb8a6;
+  --amber: #e8a33d;
+  --coral: #e1614f;
+
+  color-scheme: dark;
+  color: var(--paper);
+  background: var(--ink);
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  min-height: 100svh;
+}
+
+h1, h2, h3, .display {
+  font-family: "Space Grotesk", "IBM Plex Sans", system-ui, sans-serif;
+  letter-spacing: -0.01em;
+}
+
+.maplibregl-popup-content {
+  background: var(--panel-raised) !important;
+  color: var(--paper) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 4px !important;
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+}
+.maplibregl-popup-tip {
+  border-top-color: var(--panel-raised) !important;
+  border-bottom-color: var(--panel-raised) !important;
+}
